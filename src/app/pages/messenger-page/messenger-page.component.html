@@ -1,0 +1,24 @@
+<div class='py-[22px] h-screen flex items-center flex-col'>
+  <div class='bg-white rounded-[6px] w-[692px] flex-col overflow-y-scroll scrollbar-hide' (scroll)='this.scrollHandler($event)'>
+    <div class='mt-[20px] flex-col' *ngIf='(messages$ | async) as messages'>
+      <ng-container *ngFor='let message of messages'>
+        <div *ngIf='this.current_user_id === message.user.id; else elseBlock'>
+          <app-my-message [author]='message.user.name' [message]='message.message'></app-my-message>
+        </div>
+        <ng-template #elseBlock>
+          <app-message [author]='message.user.name' [message]='message.message'></app-message>
+        </ng-template>
+      </ng-container>
+    </div>
+  </div>
+  <div class='w-[692px] bg-white p-[12px] flex justify-around'>
+    <input
+      type='text'
+      placeholder='Message'
+      class='bg-[#F1F5F9] rounded-[6px] outline-0 placeholder-[#757575]
+           font-Roboto font-regular h-[37px] pl-[18px] py-[19px] text-[15px] w-[90.5%]'
+      (keyup.enter)='this.onEnter($event)'
+    >
+    <img src='./assets/microphone.svg' alt='microphone' class='cursor-pointer'>
+  </div>
+</div>

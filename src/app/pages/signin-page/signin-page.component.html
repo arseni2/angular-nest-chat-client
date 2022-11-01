@@ -1,0 +1,20 @@
+<div class='flex justify-center items-center w-full content-center h-screen flex-col'>
+  <div class='bg-white rounded-[10px] py-6 px-8 flex flex-col w-[272px]'>
+    <h1 class='text-4xl font-medium font-Roboto text-center mb-6'>Sign In</h1>
+    <app-input (change)='this.ChangeName($event)' [type]='"text"' [placeHolder]='"Name"' ></app-input>
+    <div class='mb-6'></div>
+    <app-input (change)='this.ChangePassword($event)' [type]='"password"' [placeHolder]='"Password"' ></app-input>
+    <div class='mb-6'></div>
+    <div class='flex w-full justify-center'>
+      <button
+        class='transition-colors bg-[#1A73E8] text-white rounded-[6px] font-Roboto font-medium w-[95px] h-[30px] hover:bg-[#0e5fc9]'
+        (click)='this.AuthLogin()'
+      >
+        Sign In
+      </button>
+    </div>
+  </div>
+  <ng-container *ngIf="(err$ | async) as err">
+    <p class='mt-5 text-red-800'>{{ err.message }}</p>
+  </ng-container>
+</div>
